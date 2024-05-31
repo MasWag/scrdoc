@@ -1,6 +1,7 @@
 ScrDoc
 ======
 
+[![StyLua.Check](https://github.com/MasWag/scrdoc/actions/workflows/stylua.yml/badge.svg?branch=master)](https://github.com/MasWag/scrdoc/actions/workflows/stylua.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](./LICENSE)
 
 This is a custom reader of Pandoc that extracts documentation from comments in a script file. This reader is primarily for shell scripts but can also be used for script languages using `#` for comments.
