@@ -9,7 +9,7 @@ This is a custom reader of Pandoc that extracts documentation from comments in a
 Prerequisites
 -------------
 
-- Pandoc (version 3.x)
+- Pandoc >= 2.16.2
 
 Usage
 -----
