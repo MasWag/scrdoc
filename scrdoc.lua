@@ -11,8 +11,8 @@
 --
 -- Synopsis
 --  pandoc -f ./scrdoc.lua -i INPUT -o OUTPUT
---  pandoc -f ./scrdoc.lua+slash-comments -i INPUT -o OUTPUT
---  pandoc -f ./scrdoc.lua+lua-comments -i INPUT -o OUTPUT
+--  pandoc -f ./scrdoc.lua+slash_comments -i INPUT -o OUTPUT
+--  pandoc -f ./scrdoc.lua+lua_comments -i INPUT -o OUTPUT
 --
 -- Requirements
 --  Pandoc >= 3.0.1
@@ -39,8 +39,8 @@ local shebang = P("#!") * wordchar ^ 0 * linebreakchar
 local endline = newline
 
 Extensions = {
-	["lua-comments"] = "disable",
-	["slash-comments"] = "disable",
+	["lua_comments"] = "disable",
+	["slash_comments"] = "disable",
 }
 
 local function MakeGrammar(commentprefix)
@@ -122,11 +122,11 @@ local function HasExtension(options, extension)
 end
 
 local function GetCommentPrefix(options)
-	local luacomments = HasExtension(options, "lua-comments")
-	local slashcomments = HasExtension(options, "slash-comments")
+	local luacomments = HasExtension(options, "lua_comments")
+	local slashcomments = HasExtension(options, "slash_comments")
 
 	if luacomments and slashcomments then
-		error("Enable only one of lua-comments or slash-comments.")
+		error("Enable only one of lua_comments or slash_comments.")
 	end
 	if luacomments then
 		return "--"

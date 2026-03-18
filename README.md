@@ -20,19 +20,19 @@ The default usage of this reader is as follows.
 pandoc -f ./scrdoc.lua -i [InputFile] -o [OutputFile]
 ```
 
-To read `//` comments instead, enable the `slash-comments` extension.
+To read `//` comments instead, turn on the `slash_comments` extension.
 
 ```sh
-pandoc -f ./scrdoc.lua+slash-comments -i [InputFile] -o [OutputFile]
+pandoc -f ./scrdoc.lua+slash_comments -i [InputFile] -o [OutputFile]
 ```
 
-To read Lua-style `--` comments instead, enable the `lua-comments` extension.
+To read Lua-style `--` comments instead, turn on the `lua_comments` extension.
 
 ```sh
-pandoc -f ./scrdoc.lua+lua-comments -i [InputFile] -o [OutputFile]
+pandoc -f ./scrdoc.lua+lua_comments -i [InputFile] -o [OutputFile]
 ```
 
-Enable at most one of `slash-comments` or `lua-comments` at a time.
+Enable at most one of `slash_comments` or `lua_comments` at a time.
 
 A concrete example of how to generate roff man is as follows:
 
@@ -49,13 +49,13 @@ pandoc -s -f ./scrdoc.lua -i ./examples/example.sh -o example.md
 For languages using `//` comments, use the bundled JavaScript example.
 
 ```sh
-pandoc -s -f ./scrdoc.lua+slash-comments -i ./examples/example.js -o example.js.md
+pandoc -s -f ./scrdoc.lua+slash_comments -i ./examples/example.js -o example.js.md
 ```
 
 For languages using Lua-style `--` comments, use the bundled Lua example.
 
 ```sh
-pandoc -s -f ./scrdoc.lua+lua-comments -i ./examples/example.lua -o example.lua.md
+pandoc -s -f ./scrdoc.lua+lua_comments -i ./examples/example.lua -o example.lua.md
 ```
 
 Markup
@@ -71,7 +71,7 @@ By default, ScrDoc reads comments starting with `#`.
 - Lines starting with `#  #` (sharp plus two spaces and hash) are considered as the ordered list.
 - Lines starting with `#` (sharp) but not followed by a space are ignored.
 
-With `pandoc -f ./scrdoc.lua+slash-comments`, the same rules apply to comments starting with `//`.
+With `pandoc -f ./scrdoc.lua+slash_comments`, the same rules apply to comments starting with `//`.
 Ordered lists still use `#` inside the documentation body, so ordered list items start with `//  #`.
 
 - Lines starting with `// ` (slash slash plus one space) are considered as the header (of level 1) of the documentation.
@@ -80,7 +80,7 @@ Ordered lists still use `#` inside the documentation body, so ordered list items
 - Lines starting with `//  #` (slash slash plus two spaces and hash) are considered as the ordered list.
 - Lines starting with `//` (slash slash) but not followed by a space are ignored.
 
-With `pandoc -f ./scrdoc.lua+lua-comments`, the same rules apply to comments starting with `--`.
+With `pandoc -f ./scrdoc.lua+lua_comments`, the same rules apply to comments starting with `--`.
 Ordered lists still use `#` inside the documentation body, so ordered list items start with `--  #`.
 
 - Lines starting with `-- ` (dash dash plus one space) are considered as the header (of level 1) of the documentation.
