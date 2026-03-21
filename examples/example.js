@@ -4,10 +4,10 @@
 //It is ignored if there is no space after //
 // Description
 //  This is a JavaScript script just to say hello.
-//  This script is for an illustration of ScrDoc slash comment support.
+//  This script is for an illustration of `ScrDoc` slash comment support.
 // Demonstration
 //  ScrDoc supports bullet lists
-//  * foo
+//  * `foo`
 //  * bar
 //  ** baz
 //  and ordered lists.

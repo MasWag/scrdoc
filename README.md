@@ -46,6 +46,8 @@ Similarly, you can generate a markdown file as follows:
 pandoc -s -f ./scrdoc.lua -i ./examples/example.sh -o example.md
 ```
 
+The bundled examples also demonstrate inline code spans such as `` `ScrDoc` `` and `` `foo` ``.
+
 For languages using `//` comments, use the bundled JavaScript example.
 
 ```sh
@@ -65,11 +67,21 @@ ScrDoc reads the header comments of a script file. Namely, it only reads the com
 
 By default, ScrDoc reads comments starting with `#`.
 
+For example, single-backtick inline code is preserved in headers, text, and list items.
+
+```sh
+# Description
+#  Run `example.sh` to print a greeting.
+# Demonstration
+#  * `foo`
+```
+
 - Lines starting with `# ` (sharp plus one space) are considered as the header (of level 1) of the documentation.
 - Lines starting with `#  ` (sharp plus two spaces) are considered as the normal text.
 - Lines starting with `#  *` (sharp plus two spaces and asterisk) are considered as the bullet list.
 - Lines starting with `#  #` (sharp plus two spaces and hash) are considered as the ordered list.
 - Lines starting with `#` (sharp) but not followed by a space are ignored.
+- Single-backtick inline code such as `` `pandoc` `` is supported within parsed comment content.
 
 With `pandoc -f ./scrdoc.lua+slash_comments`, the same rules apply to comments starting with `//`.
 Ordered lists still use `#` inside the documentation body, so ordered list items start with `//  #`.

@@ -34,6 +34,9 @@ local linebreakchar = S("\r\n")
 local wordchar = (1 - linebreakchar)
 local properchar = (1 - whitespacechar)
 local spacechar = S(" \t")
+local backtick = P("`")
+local inlineplainchar = (1 - whitespacechar - backtick)
+local inlinecodechar = (1 - linebreakchar - backtick)
 local newline = (P("\r") ^ -1 * P("\n"))
 local shebang = P("#!") * wordchar ^ 0 * linebreakchar
 local endline = newline
@@ -110,10 +113,12 @@ local function MakeGrammar(commentprefix)
 			* (V("BulletList") + V("OrderedList")),
 		BulletList = Ct(ListItem(1, "*") ^ 1) / pandoc.BulletList,
 		OrderedList = Ct(ListItem(1, "#") ^ 1) / pandoc.OrderedList,
-		Inline = V("Str") + V("Space") + V("SoftBreak"),
-		Str = wordchar ^ 1 / pandoc.Str,
+		Inline = V("Code") + V("Text") + V("Space") + V("SoftBreak") + V("LiteralBacktick"),
+		Code = backtick * C(inlinecodechar ^ 1) * backtick / pandoc.Code,
+		Text = C(inlineplainchar ^ 1) / pandoc.Str,
 		Space = spacechar ^ 1 / pandoc.Space,
 		SoftBreak = (endline * (commentchar * spacechar ^ 2 * #(1 - S("*#")))) / pandoc.SoftBreak,
+		LiteralBacktick = C(backtick) / pandoc.Str,
 	})
 end
 
